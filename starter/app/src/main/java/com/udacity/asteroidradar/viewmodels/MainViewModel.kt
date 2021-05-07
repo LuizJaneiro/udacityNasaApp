@@ -10,12 +10,23 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val _asteroidsLiveData = MutableLiveData<List<Asteroid>>()
+    private val _navigateToSelectedAsteroidLiveData = MutableLiveData<Asteroid?>()
 
     val asteroidsLiveData: LiveData<List<Asteroid>>
         get() = _asteroidsLiveData
+    val navigateToSelectedAsteroidLiveData: LiveData<Asteroid?>
+        get() = _navigateToSelectedAsteroidLiveData
 
     init {
         getAsteroids()
+    }
+
+    fun displayAsteroidDetails(asteroid: Asteroid) {
+        _navigateToSelectedAsteroidLiveData.value = asteroid
+    }
+
+    fun displayAsteroidDetailsComplete() {
+        _navigateToSelectedAsteroidLiveData.value = null
     }
 
     private fun getAsteroids() {
