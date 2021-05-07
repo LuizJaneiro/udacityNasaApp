@@ -12,12 +12,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/app_background">
+        style="@style/AppTheme.Dark">
 
         <FrameLayout
             android:id="@+id/activity_main_image_of_the_day_layout"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="@dimen/height_extra_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,13 +34,13 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:layout_gravity="bottom"
-                android:background="#55010613"
-                android:text="@string/image_of_the_day" />
+                android:background="@color/background_gray"
+                android:padding="@dimen/margin_small"
+                android:text="@string/image_of_the_day"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -1,10 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
-    <color name="colorPrimary">#010613</color>
-    <color name="colorPrimaryDark">#010613</color>
-    <color name="colorAccent">#FF8282</color>
-    <color name="app_background">#010613</color>
-    <color name="default_text_color">#FFFFFF</color>
-    <color name="text_grey">#D2D2D2</color>
-    <color name="potentially_hazardous">#FF8282</color>
+  <color name="colorPrimary">#010613</color>
+  <color name="colorPrimaryLight">#2c3039</color>
+  <color name="colorPrimaryDark">#000000</color>
+  <color name="colorSecondary">#d2d2d2</color>
+  <color name="colorSecondaryLight">#ffffff</color>
+  <color name="colorSecondaryDark">#a1a1a1</color>
+  <color name="primaryTextColor">#ffffff</color>
+  <color name="secondaryTextColor">#000000</color>
+  <color name="colorAccent">#FF8282</color>
+  <color name="default_text_color">#FFFFFF</color>
+  <color name="potentially_hazardous">#FF8282</color>
+  <color name="background_gray">#55010613</color>
 </resources>
