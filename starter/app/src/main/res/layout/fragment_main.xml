@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.udacity.asteroidradar.main.MainViewModel" />
@@ -10,9 +11,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/AppTheme.Dark"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/AppTheme.Dark">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/activity_main_image_of_the_day_layout"
@@ -28,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/placeholder_picture_of_day"/>
+                app:srcCompat="@drawable/placeholder_picture_of_day" />
 
             <TextView
                 android:id="@+id/textView"
@@ -38,9 +39,7 @@
                 android:background="@color/background_gray"
                 android:padding="@dimen/margin_small"
                 android:text="@string/image_of_the_day"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large"
-                android:textStyle="bold" />
+                android:textAppearance="@style/TextAppearance.Title" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView

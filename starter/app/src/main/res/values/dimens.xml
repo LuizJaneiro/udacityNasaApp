@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_large">20sp</dimen>
     <dimen name="margin_xxsmall">4dp</dimen>
     <dimen name="margin_small">16dp</dimen>
+
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+
     <dimen name="height_extra_large">220dp</dimen>
 </resources>
