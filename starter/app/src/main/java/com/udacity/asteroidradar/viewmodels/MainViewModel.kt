@@ -1,24 +1,37 @@
 package com.udacity.asteroidradar.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import com.udacity.asteroidradar.data.database.getDatabase
 import com.udacity.asteroidradar.domain.Asteroid
+import com.udacity.asteroidradar.repository.AsteroidsRepository
+import com.udacity.asteroidradar.util.Constants
+import com.udacity.asteroidradar.util.toStringWithFormat
 import kotlinx.coroutines.launch
+import java.util.*
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _asteroidsLiveData = MutableLiveData<List<Asteroid>>()
+    private val database = getDatabase(application)
+    private val asteroidsRepository = AsteroidsRepository(database)
+
     private val _navigateToSelectedAsteroidLiveData = MutableLiveData<Asteroid?>()
 
-    val asteroidsLiveData: LiveData<List<Asteroid>>
-        get() = _asteroidsLiveData
+    val asteroidsLiveData = asteroidsRepository.asteroids
     val navigateToSelectedAsteroidLiveData: LiveData<Asteroid?>
         get() = _navigateToSelectedAsteroidLiveData
 
     init {
-        getAsteroids()
+        viewModelScope.launch {
+            val calendar = Calendar.getInstance()
+            val actualDate = calendar.time
+            calendar.add(Calendar.DAY_OF_YEAR, 7)
+            val sevenDaysBefore = calendar.time
+            asteroidsRepository.refreshAsteroids(
+                actualDate.toStringWithFormat(Constants.API_QUERY_DATE_FORMAT),
+                sevenDaysBefore.toStringWithFormat(Constants.API_QUERY_DATE_FORMAT)
+            )
+        }
     }
 
     fun displayAsteroidDetails(asteroid: Asteroid) {
@@ -27,24 +40,5 @@ class MainViewModel : ViewModel() {
 
     fun displayAsteroidDetailsComplete() {
         _navigateToSelectedAsteroidLiveData.value = null
-    }
-
-    private fun getAsteroids() {
-        viewModelScope.launch {
-            val asteroids = mutableListOf<Asteroid>()
-            for(i in 0 .. 10) {
-                asteroids.add(Asteroid(
-                        id = i.toLong(),
-                        codename = "XPS (203234)",
-                        distanceFromEarth = 2000.00,
-                        absoluteMagnitude = 2.3,
-                        closeApproachDate = "2020-02-02",
-                        estimatedDiameter = 243.00,
-                        isPotentiallyHazardous = i%2 == 0,
-                        relativeVelocity = 232.3
-                ))
-            }
-            _asteroidsLiveData.value = asteroids
-        }
     }
 }

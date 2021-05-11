@@ -13,5 +13,5 @@ object Network {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    val asteroidNeoService = retrofitScalars.create(AsteroidNeoService::class.java)
+    val asteroidNeoService: AsteroidNeoService = retrofitScalars.create(AsteroidNeoService::class.java)
 }

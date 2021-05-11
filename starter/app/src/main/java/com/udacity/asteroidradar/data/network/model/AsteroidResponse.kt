@@ -1,5 +1,7 @@
 package com.udacity.asteroidradar.data.network.model
 
+import com.udacity.asteroidradar.data.database.model.DatabaseAsteroid
+
 data class AsteroidResponse(
     val id: Long,
     val codename: String,
@@ -10,3 +12,15 @@ data class AsteroidResponse(
     val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean
 )
+
+fun AsteroidResponse.asDatabaseModel() =
+    DatabaseAsteroid(
+        id,
+        codename,
+        closeApproachDate,
+        absoluteMagnitude,
+        estimatedDiameter,
+        relativeVelocity,
+        distanceFromEarth,
+        isPotentiallyHazardous
+    )
