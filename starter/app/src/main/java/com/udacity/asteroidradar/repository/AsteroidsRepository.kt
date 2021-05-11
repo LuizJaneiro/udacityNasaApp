@@ -15,9 +15,11 @@ class AsteroidsRepository(private val dataBase: AsteroidsDatabase) {
     private val network = AsteroidsNeoNetwork()
 
     val asteroids: LiveData<List<Asteroid>> = Transformations.map(dataBase.asteroidsDao.getAsteroids()) {
-        it.map { asteroid ->
-            asteroid.asDomain()
-        }
+        if(it.isNotEmpty()) {
+            it.map { asteroid ->
+                asteroid.asDomain()
+            }
+        } else null
     }
 
     suspend fun refreshAsteroids(startDate: String, endDate: String) {

@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar.util
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -50,4 +51,14 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?) {
     data?.let {
         adapter.submitList(it)
     }
+}
+
+@BindingAdapter("goneIfNotNull")
+fun goneIfNotNull(view: View, it: Any?) {
+    view.visibility = if (it != null) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("goneIfNull")
+fun goneIfNull(view: View, it: Any?) {
+    view.visibility = if (it == null) View.GONE else View.VISIBLE
 }
