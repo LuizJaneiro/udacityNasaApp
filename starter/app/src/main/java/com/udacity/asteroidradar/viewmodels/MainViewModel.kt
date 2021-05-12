@@ -23,14 +23,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            val calendar = Calendar.getInstance()
-            val actualDate = calendar.time
-            calendar.add(Calendar.DAY_OF_YEAR, 7)
-            val sevenDaysBefore = calendar.time
             asteroidsRepository.refreshAsteroids(
-                actualDate.toStringWithFormat(Constants.API_QUERY_DATE_FORMAT),
-                sevenDaysBefore.toStringWithFormat(Constants.API_QUERY_DATE_FORMAT)
+                Date()
             )
+            setTodayAsteroids()
         }
     }
 
@@ -40,5 +36,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun displayAsteroidDetailsComplete() {
         _navigateToSelectedAsteroidLiveData.value = null
+    }
+
+    fun setTodayAsteroids() {
+        viewModelScope.launch {
+            asteroidsRepository.setTodayAsteroids()
+        }
+
+    }
+
+    fun setWeekAsteroids() {
+        viewModelScope.launch {
+            asteroidsRepository.setWeekAsteroids()
+        }
+    }
+
+    fun setAllAsteroids() {
+        viewModelScope.launch {
+            asteroidsRepository.setAllAsteroids()
+        }
     }
 }

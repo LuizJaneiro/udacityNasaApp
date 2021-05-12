@@ -1,6 +1,8 @@
 package com.udacity.asteroidradar.data.network.model
 
 import com.udacity.asteroidradar.data.database.model.DatabaseAsteroid
+import com.udacity.asteroidradar.util.Constants
+import com.udacity.asteroidradar.util.toDateWithFormat
 
 data class AsteroidResponse(
     val id: Long,
@@ -17,7 +19,7 @@ fun AsteroidResponse.asDatabaseModel() =
     DatabaseAsteroid(
         id,
         codename,
-        closeApproachDate,
+        closeApproachDate.toDateWithFormat(Constants.DATE_FORMAT),
         absoluteMagnitude,
         estimatedDiameter,
         relativeVelocity,
