@@ -18,9 +18,8 @@
 
         <FrameLayout
             android:id="@+id/activity_main_image_of_the_day_layout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_extra_large"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -51,10 +50,8 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day_layout"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/activity_main_image_of_the_day_layout"
+            app:layout_constraintTop_toTopOf="parent"
             app:listData="@{viewModel.asteroidsLiveData}"
             app:goneIfNull="@{viewModel.asteroidsLiveData}"
             tools:listitem="@layout/asteroid_item" />
@@ -67,7 +64,7 @@
             android:indeterminate="true"
             android:indeterminateTint="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/activity_main_image_of_the_day_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:goneIfNotNull="@{viewModel.asteroidsLiveData}"
