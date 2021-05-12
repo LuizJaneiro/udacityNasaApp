@@ -74,8 +74,11 @@ class AsteroidsRepository(private val dataBase: AsteroidsDatabase) {
 
     suspend fun getPictureOfTheDay() {
         withContext(Dispatchers.IO) {
-            _pictureOfTheDay.postValue(network.getPictureOfTheDay().asDomain())
-
+            try {
+                _pictureOfTheDay.postValue(network.getPictureOfTheDay().asDomain())
+            } catch (exception: Exception){
+                exception.printStackTrace()
+            }
         }
     }
 }
