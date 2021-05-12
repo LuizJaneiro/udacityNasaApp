@@ -6,7 +6,9 @@ import com.udacity.asteroidradar.data.database.AsteroidsDatabase
 import com.udacity.asteroidradar.data.database.model.asDomain
 import com.udacity.asteroidradar.data.network.AsteroidsNeoNetwork
 import com.udacity.asteroidradar.data.network.model.asDatabaseModel
+import com.udacity.asteroidradar.data.network.model.asDomain
 import com.udacity.asteroidradar.domain.Asteroid
+import com.udacity.asteroidradar.domain.PictureOfTheDay
 import com.udacity.asteroidradar.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -17,9 +19,12 @@ class AsteroidsRepository(private val dataBase: AsteroidsDatabase) {
     private val network = AsteroidsNeoNetwork()
 
     private val _asteroids = MutableLiveData<List<Asteroid>?>()
+    private val _pictureOfTheDay = MutableLiveData<PictureOfTheDay>()
 
     val asteroids: LiveData<List<Asteroid>?>
         get() = _asteroids
+    val pictureOfTheDay: LiveData<PictureOfTheDay>
+        get() = _pictureOfTheDay
 
     suspend fun refreshAsteroids(startDate: Date) {
         withContext(Dispatchers.IO) {
@@ -64,6 +69,13 @@ class AsteroidsRepository(private val dataBase: AsteroidsDatabase) {
                     it.asDomain()
                 }
             )
+        }
+    }
+
+    suspend fun getPictureOfTheDay() {
+        withContext(Dispatchers.IO) {
+            _pictureOfTheDay.postValue(network.getPictureOfTheDay().asDomain())
+
         }
     }
 }

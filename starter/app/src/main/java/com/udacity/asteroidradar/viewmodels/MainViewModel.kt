@@ -18,6 +18,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _navigateToSelectedAsteroidLiveData = MutableLiveData<Asteroid?>()
 
     val asteroidsLiveData = asteroidsRepository.asteroids
+    val pictureOfTheDayLiveData = asteroidsRepository.pictureOfTheDay
     val navigateToSelectedAsteroidLiveData: LiveData<Asteroid?>
         get() = _navigateToSelectedAsteroidLiveData
 
@@ -27,6 +28,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 Date()
             )
             setTodayAsteroids()
+            asteroidsRepository.getPictureOfTheDay()
         }
     }
 

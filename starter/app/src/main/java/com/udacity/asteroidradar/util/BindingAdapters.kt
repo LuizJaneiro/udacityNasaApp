@@ -5,8 +5,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.domain.Asteroid
+import com.udacity.asteroidradar.domain.PictureOfTheDay
 import com.udacity.asteroidradar.ui.adapters.AsteroidAdapter
 
 @BindingAdapter("statusIcon")
@@ -61,4 +63,11 @@ fun goneIfNotNull(view: View, it: Any?) {
 @BindingAdapter("goneIfNull")
 fun goneIfNull(view: View, it: Any?) {
     view.visibility = if (it == null) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("picassoWith")
+fun picassoWith(imageView: ImageView, it: PictureOfTheDay?) {
+    it?.let { picture ->
+        Picasso.get().load(picture.url).into(imageView)
+    }
 }
