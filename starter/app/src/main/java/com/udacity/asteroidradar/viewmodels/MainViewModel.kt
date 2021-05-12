@@ -5,8 +5,6 @@ import androidx.lifecycle.*
 import com.udacity.asteroidradar.data.database.getDatabase
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.repository.AsteroidsRepository
-import com.udacity.asteroidradar.util.Constants
-import com.udacity.asteroidradar.util.toStringWithFormat
 import kotlinx.coroutines.launch
 import java.util.*
 
