@@ -51,7 +51,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_small"
             app:statusIcon="@{asteroid.potentiallyHazardous}"
-            tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
+            tools:srcCompat="@drawable/ic_status_potentially_hazardous"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
 </layout>
 

@@ -14,8 +14,10 @@ import com.udacity.asteroidradar.ui.adapters.AsteroidAdapter
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
+        imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
     } else {
+        imageView.contentDescription = imageView.context.getString(R.string.not_hazardous_asteroid_image)
         imageView.setImageResource(R.drawable.ic_status_normal)
     }
 }
@@ -23,8 +25,10 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 @BindingAdapter("asteroidStatusImage")
 fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
+        imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
         imageView.setImageResource(R.drawable.asteroid_hazardous)
     } else {
+        imageView.contentDescription = imageView.context.getString(R.string.not_hazardous_asteroid_image)
         imageView.setImageResource(R.drawable.asteroid_safe)
     }
 }
@@ -68,6 +72,9 @@ fun goneIfNull(view: View, it: Any?) {
 @BindingAdapter("picassoWith")
 fun picassoWith(imageView: ImageView, it: PictureOfTheDay?) {
     it?.let { picture ->
+        imageView.contentDescription = imageView.context.getString(R.string.nasa_picture_of_day_content_description_format, it.title)
         Picasso.get().load(picture.url).into(imageView)
     }
 }
+
+
